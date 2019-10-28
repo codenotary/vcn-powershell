@@ -1,6 +1,6 @@
 # Set vcn binary path - please download vcn here: https://github.com/vchain-us/vcn/releases/latest
    $vcnpath = """$env:programfiles\codenotary\vcn.exe"""
-
+   $logpath = "C:\CodeNotary\codenotary.log"
 ## Define all environments
 
 ### Set Production environment
@@ -31,7 +31,7 @@
 			 iex "& $command"
              $logline = "Trust $(Get-Date), $changeType, $path"
              write-host $logline
-		     Add-content ($watchertrusted.Path + "\codenotary.log") -value $logline
+		     Add-content ($logpath) -value $logline
              }    
 
    $actionunsupported = { $path = $Event.SourceEventArgs.FullPath
@@ -41,7 +41,7 @@
 			 iex "& $command"
              $logline = "Unsupport $(Get-Date), $changeType, $path"
              write-host $logline
-		     Add-content ($watcherunsupported.Path + "\codenotary.log") -value $logline
+		     Add-content ($logpath) -value $logline
              }    
    
    $actionuntrusted = { $path = $Event.SourceEventArgs.FullPath
@@ -51,7 +51,7 @@
 			 iex "& $command"
              $logline = "Untrust $(Get-Date), $changeType, $path"
              write-host $logline
-		     Add-content ($watcheruntrusted.Path + "\codenotary.log") -value $logline
+		     Add-content ($logpath) -value $logline
              }    
 
 # Register all Watcher
