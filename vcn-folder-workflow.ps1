@@ -26,7 +26,7 @@
 ## Define notarization when files are detected
    $actiontrusted = { $path = $Event.SourceEventArgs.FullPath
              $changeType = $Event.SourceEventArgs.ChangeType
-			 $param = " n " + """$Path""" + " --attr PSEvent=True"
+			 $param = " notarize " + """$Path""" + " --attr PSEvent=True"
 			 $command = $vcnpath + "$param"
 			 iex "& $command"
              $logline = "Trust $(Get-Date), $changeType, $path"
@@ -36,7 +36,7 @@
 
    $actionunsupported = { $path = $Event.SourceEventArgs.FullPath
              $changeType = $Event.SourceEventArgs.ChangeType
-			 $param = " n " + """$Path""" + " --attr PSEvent=True"
+			 $param = " unsupport " + """$Path""" + " --attr PSEvent=True"
 			 $command = $vcnpath + "$param"
 			 iex "& $command"
              $logline = "Unsupport $(Get-Date), $changeType, $path"
@@ -46,7 +46,7 @@
    
    $actionuntrusted = { $path = $Event.SourceEventArgs.FullPath
              $changeType = $Event.SourceEventArgs.ChangeType
-			 $param = " n " + """$Path""" + " --attr PSEvent=True"
+			 $param = " untrust " + """$Path""" + " --attr PSEvent=True"
 			 $command = $vcnpath + "$param"
 			 iex "& $command"
              $logline = "Untrust $(Get-Date), $changeType, $path"
